@@ -7,7 +7,13 @@ include(${CGAL_USE_FILE})
 
 find_package(Qt5 REQUIRED COMPONENTS OpenGL Xml Widgets)
 
-add_executable(test_Delaunay main.cxx)
+add_executable(
+  roboto
+  ./src/main.cxx
+  ./src/FileReader/FileReader.h
+  ./src/MatrixInserter/MatrixInserter.h
+)
+
 target_link_libraries(
   roboto
   ${CGAL_LIBRARIES} CGAL_Qt5
