@@ -1,29 +1,38 @@
-#include <ofstream>
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <sstream>
 
 template< typename Matrix , typename MT , typename LT >
-int FileWriter< Matrix >::writeFile( char* filename , Matrix* info ){
-  ofstream outFile;
+int FileWriter< Matrix , MT , LT >::writeFile( char* filename , Matrix* info ){
+  std::stringstream ss;
+  std::ofstream outFile;
   outFile.open( filename );
-  if( !outFile ){
-    return typename LT::ERROR;
-  }
 
   int height = info->size( );
   int width = (*info)[0].size( );
-  int maxValue = typename LT::BLOCKED;
+  int maxValue = LT::BLOCKED;
 
-  outFile << "P2" << "\n"
+  ss << "P2" << "\n"
   << "# Author Juan Gomez" << "\n"
   << width << " " << height << "\n"
   << maxValue << "\n";
-
-  for( int row = 0 ; row < height ; row++ ){
-    for( int col = 0 ; col < width ; col++ ){
-      typename MT::Element value = (*info)[row][col];
-      outFile << value << " ";
+  
+  
+  typedef typename MT::Row_Iterator RowIt;
+  typedef typename MT::Column_Iterator ColIt;
+  RowIt rowIt = info->begin( );
+  for( ; rowIt != info->end( ) ; rowIt++ ){
+    ColIt colIt = rowIt->second.begin( );
+    for( ; colIt != rowIt->second.end( ) ; colIt++ ){
+      ss << std::to_string( colIt->second ) << " " ;
     }
-    outFile << "\n";
+    ss << "\n";
   }
+  
+  outFile << ss.rdbuf( );
+  
+  outFile.close( );
 
-  return typename LT::SUCCESS;
+  return LT::SUCCESS;
 }

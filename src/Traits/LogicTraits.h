@@ -3,6 +3,7 @@
 
 class LogicTraits {
 public:
+  
   static const int FREE;
   static const int PATH;
   static const int BLOCKED;

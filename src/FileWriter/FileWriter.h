@@ -4,13 +4,10 @@
 #include "../Types/Types.h"
 #include "../Traits/LogicTraits.h"
 
-typedef typename Types< int > DefaultTraits;
-typedef typename DefaultTraits::Matrix DefaultType;
-
 template<
-  typename MatrixContainer=DefaultType ,
-  typename MT=DefaultTraits ,
-  typename LT=LogicTraits
+  typename MatrixContainer ,
+  typename MT ,
+  typename LT
 >
 class FileWriter {
 public:

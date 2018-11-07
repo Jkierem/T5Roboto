@@ -16,13 +16,12 @@ bool Core::isBorder( int row , int col , Matrix* m ){
 
 template< typename Matrix , typename CoreTraits >
 void Core::getBorders( Matrix* matrix ){
-  typedef Core::isBorder< Matrix , CoreTraits > border;
   int nRows = matrix->size( );
   int nCols = (*matrix)[0].size( );
   for ( int row = 0; row < nRows ; row++ ) {
     for ( int col = 0 ; col < nCols ; col++ ) {
       int value = (*matrix)[row][col];
-      if( value == CoreTraits::BLOCKED && border( row , col , matrix) ){
+      if( value == CoreTraits::BLOCKED && Core::isBorder< Matrix , CoreTraits >( row , col , matrix) ){
         (*matrix)[row][col] = CoreTraits::FREE;
       }
     }
