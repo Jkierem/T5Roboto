@@ -14,6 +14,7 @@ add_executable(
   ./src/Traits/LogicTraits.h
   ./src/Traits/ReaderTraits.h
   ./src/FileReader/FileReader.h
+  ./src/FileWriter/FileWriter.h
   ./src/MatrixInserter/MatrixInserter.h
 )
 

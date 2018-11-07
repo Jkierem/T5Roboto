@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "./FileReader/FileReader.h"
+#include "./FileWriter/FileWriter.h"
 #include "./MatrixInserter/MatrixInserter.h"
 #include "./Traits/ReaderTraits.h"
 #include "./Comparator/Comparator.h"
@@ -20,6 +21,7 @@ typedef TT::Matrix TMatrix;
 typedef MatrixInserter< int > TMatrixInserter;
 typedef ReaderTraits< TMatrix , TMatrixInserter , int > RT;
 typedef FileReader< RT > FR;
+typedef FileWriter FW;
 
 int main( int argc, char* argv[] )
 {
@@ -31,6 +33,7 @@ int main( int argc, char* argv[] )
 
   RT::Container* pixels = FR::readFile( argv[ 1 ] );
   Core::getBorders( pixels );
+  FW::writeFile( "./out_put.pgm" , pixels );
 
   if( pixels == NULL ){
     std::cerr << "Error reading file. Please check input file" << std::endl;

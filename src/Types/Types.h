@@ -6,6 +6,7 @@
 template< typename TElement >
 class Types {
 public:
+  typedef TElement Element;
   typedef std::map< int , TElement > Column;
   typedef std::map< int , Column > Matrix;
   typedef typename Column::iterator Column_Iterator;
