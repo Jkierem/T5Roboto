@@ -26,6 +26,9 @@ MatrixInserter< TElement >::~MatrixInserter( ){
 
 template< class TElement >
 void MatrixInserter< TElement >::insert( int x , int y , TElement element ){
+  if( this->m_Matrix->find( x ) == this->m_Matrix->end( ) ){
+    (*(this->m_Matrix))[x] = typename Types< TElement >::Column( );
+  }
   (*(this->m_Matrix))[x][y] = element;
 }
 
