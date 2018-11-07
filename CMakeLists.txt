@@ -4,6 +4,9 @@ project(roboto)
 
 find_package(CGAL REQUIRED)
 include(${CGAL_USE_FILE})
+
+find_package(Qt5 REQUIRED COMPONENTS OpenGL Xml Widgets)
+
 set (CMAKE_CXX_STANDARD 11)
 
 add_executable(
@@ -19,5 +22,6 @@ add_executable(
 
 target_link_libraries(
   roboto
-  ${CGAL_LIBRARIES} 
+  ${CGAL_LIBRARIES} CGAL_Qt5
+  Qt5::Xml Qt5::Widgets Qt5::OpenGL
   )
