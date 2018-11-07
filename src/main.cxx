@@ -9,6 +9,7 @@
 #include "./Traits/ReaderTraits.h"
 #include "./Comparator/Comparator.h"
 #include "./Types/Types.h"
+#include "./Core/Core.h"
 
 typedef CGAL::Exact_predicates_inexact_constructions_kernel Epick;
 typedef CGAL::Simple_cartesian< int > Kernel;
@@ -29,7 +30,7 @@ int main( int argc, char* argv[] )
   }
 
   RT::Container* pixels = FR::readFile( argv[ 1 ] );
-  
+  Core::getBorders( pixels );
 
   if( pixels == NULL ){
     std::cerr << "Error reading file. Please check input file" << std::endl;

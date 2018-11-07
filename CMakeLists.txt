@@ -10,6 +10,9 @@ find_package(Qt5 REQUIRED COMPONENTS OpenGL Xml Widgets)
 add_executable(
   roboto
   ./src/main.cxx
+  ./src/Core/Core.h
+  ./src/Traits/LogicTraits.h
+  ./src/Traits/ReaderTraits.h
   ./src/FileReader/FileReader.h
   ./src/MatrixInserter/MatrixInserter.h
 )
