@@ -1,15 +1,11 @@
 #ifndef __CORE_H__
 #define __CORE_H__
 
-#include "../Traits/LogicTraits.h"
-
 namespace Core {
-  template< typename Matrix , typename CoreTraits=LogicTraits >
-  bool isBorder( int row , int col , Matrix* m );
-  template< typename Matrix , typename CoreTraits=LogicTraits >
-  void getBorders( Matrix* matrix );
-  template< typename PolygonTraits , typename PointTraits , typename Matrix >
-  typename PolygonTraits::Container getPolygons( typename PointTraits::Container borders );
+  template< typename Traits >
+  bool isBorder( int i , int j , const typename Traits::Matrix& m );
+  template< typename Traits >
+  typename Traits::Matrix getBorders( typename Traits::Matrix& matrix );
 } /* Core */
 
 #include "Core.cxx"

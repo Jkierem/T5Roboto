@@ -1,18 +1,13 @@
 #ifndef __FILE_WRITER_H__
 #define __FILE_WRITER_H__
 
-#include "../Types/Types.h"
-#include "../Traits/LogicTraits.h"
-
-template<
-  typename MatrixContainer ,
-  typename MT ,
-  typename LT
->
-class FileWriter {
-public:
-  static int writeFile( char* filename , MatrixContainer* info );
-};
+namespace Core {
+  template< typename Traits >
+  class FileWriter {
+  public:
+    static int writeFile( char* filename , const typename Traits::Matrix& info );
+  };
+} /* Core */
 
 #include "FileWriter.cxx"
 

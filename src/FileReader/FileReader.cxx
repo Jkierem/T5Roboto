@@ -2,18 +2,15 @@
 #include <sstream>
 
 template< typename T >
-typename T::Container* FileReader<T>::readFile( char* filename ){
-
-  typedef typename T::Container Container;
-  typedef typename T::Element Element;
-  typedef typename T::Inserter Inserter;
-  Container* pixels;
+typename Core::FileReader<T>::Response Core::FileReader<T>::readFile( char* filename ){
 
   std::ifstream inFile;
   inFile.open( filename );
+  Response res;
 
   if( !inFile ) {
-    return pixels;
+    res.state = T::ERROR;
+    return res;
   }
 
   std::stringstream ss;
@@ -21,11 +18,9 @@ typename T::Container* FileReader<T>::readFile( char* filename ){
 
   std::getline( inFile, inputLine );
   if( inputLine.compare( "P2" ) != 0 ) {
-    return pixels;
+    res.state = T::ERROR;
+    return res;
   }
-
-  pixels = new Container( );
-  Inserter inserter( pixels );
 
   std::getline( inFile, inputLine );
 
@@ -33,8 +28,9 @@ typename T::Container* FileReader<T>::readFile( char* filename ){
   ss << inFile.rdbuf( );
   ss >> numColumns >> numRows >> maxValue;
 
-  for( unsigned int i = 0; i < numRows; i++ ) {
-    for( unsigned int j = 0; j < numColumns; j++ ) {
+  Matrix m( numRows , numColumns );
+  for( unsigned int i = 0; i < m.row_dimension( ) ; i++ ) {
+    for( unsigned int j = 0; j < m.column_dimension( ) ; j++ ) {
       unsigned int value = 0;
       Element e;
       ss >> value;
@@ -43,11 +39,13 @@ typename T::Container* FileReader<T>::readFile( char* filename ){
       }else{
         e = T::BLOCKED ;
       }
-      inserter.insert( i , j , e );
+      m( i , j ) = e;
     }
   }
 
   inFile.close( );
 
-  return pixels;
+  res.state = T::SUCCESS;
+  res.value = m;
+  return res;
 }

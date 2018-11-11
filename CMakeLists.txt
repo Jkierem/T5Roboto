@@ -2,6 +2,8 @@ cmake_minimum_required(VERSION 3.0)
 
 project(roboto)
 
+set( CMAKE_BUILD_TYPE Debug )
+
 find_package(CGAL REQUIRED)
 include(${CGAL_USE_FILE})
 
@@ -13,11 +15,10 @@ add_executable(
   roboto
   ./src/main.cxx
   ./src/Core/Core.h
-  ./src/Traits/LogicTraits.h
-  ./src/Traits/ReaderTraits.h
+  ./src/Traits/Traits.h
+  ./src/Traits/Values.h
   ./src/FileReader/FileReader.h
   ./src/FileWriter/FileWriter.h
-  ./src/MatrixInserter/MatrixInserter.h
 )
 
 target_link_libraries(
