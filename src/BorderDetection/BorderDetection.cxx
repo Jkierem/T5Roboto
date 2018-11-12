@@ -15,7 +15,7 @@ bool Core::isBorder( int row , int col , const typename Traits::Matrix& m ){
 }
 
 template< typename Traits >
-typename Traits::Matrix Core::getBorders( typename Traits::Matrix& matrix ){
+void Core::getBorders( typename Traits::Matrix& matrix ){
   int nRows = matrix.row_dimension( );
   int nCols = matrix.column_dimension( );
   for ( int row = 0; row < nRows ; row++ ) {
@@ -34,5 +34,4 @@ typename Traits::Matrix Core::getBorders( typename Traits::Matrix& matrix ){
       }
     }
   }
-  return matrix;
 }

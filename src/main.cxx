@@ -2,12 +2,14 @@
 
 #include <iostream>
 
-#include "./Core/Core.h"
 #include "./Traits/Traits.h"
+#include "./Bresenham/Bresenham.h"
 #include "./FileReader/FileReader.h"
 #include "./FileWriter/FileWriter.h"
+#include "./BorderDetection/BorderDetection.h"
 
-typedef Traits< unsigned int > TT;
+
+typedef Traits< int > TT;
 typedef Core::FileReader< TT > FR;
 typedef Core::FileWriter< TT > FW;
 
@@ -20,13 +22,17 @@ int main( int argc, char* argv[] )
   }
 
   FR::Response res = FR::readFile( argv[ 1 ] );
+
   if( res.state == TT::ERROR ){
     std::cerr << "Error reading file" << std::endl;
     return( -1 );
   }
 
   TT::Matrix m = res.value;
-  m = Core::getBorders< TT >( m );
+  Core::getBorders< TT >( m );
+
+  Core::Line line = Core::calculateLine( 0 , 0 , 100 , 5);
+  Core::plotOverMatrix< TT >( m , line );
   FW::writeFile( argv[ 2 ] , m );
 
   std::cout << "Ended excecution" << std::endl;

@@ -35,12 +35,6 @@ public:
   typedef typename Matrix::column_iterator ColumnIterator;
   typedef typename Matrix::row_iterator RowIterator;
 
-  /*
-  * Helpers
-  */
-
-
-
 }; /* Traits */
 
 template< typename FT >

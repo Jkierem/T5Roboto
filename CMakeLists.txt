@@ -14,11 +14,11 @@ set (CMAKE_CXX_STANDARD 11)
 add_executable(
   roboto
   ./src/main.cxx
-  ./src/Core/Core.h
   ./src/Traits/Traits.h
-  ./src/Traits/Values.h
+  ./src/Bresenham/Bresenham.h
   ./src/FileReader/FileReader.h
   ./src/FileWriter/FileWriter.h
+  ./src/BorderDetection/BorderDetection.h
 )
 
 target_link_libraries(
