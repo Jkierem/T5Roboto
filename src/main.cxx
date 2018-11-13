@@ -9,6 +9,7 @@
 #include "./FileWriter/FileWriter.h"
 #include "./BorderDetection/BorderDetection.h"
 #include "./Voronoi/Voronoi.h"
+#include "./ConnectedComponents/ConnectedComponents.h"
 
 typedef Traits< int > TT;
 typedef Core::FileReader< TT > FR;
@@ -16,6 +17,8 @@ typedef Core::FileWriter< TT > FW;
 typedef Core::Voronoi< TT > VD;
 typedef typename VD::Site_2 Site_2;
 typedef typename VD::SiteVector SiteVector;
+
+typedef Core::ConnectedComponents< TT > CC;
 
 int main( int argc, char* argv[] )
 {
@@ -37,8 +40,8 @@ int main( int argc, char* argv[] )
 
   SiteVector points = VD::getSitesFromMatrix( borders );
   VD::VoronoiDiagram v = VD::getVoronoiFromSites( points );
-
-  FW::writeFile( argv[ 2 ] , borders );
+  TT::Matrix regions = CC::getConnectedRegions( borders );
+  FW::writeFile( argv[ 2 ] , regions );
 
   std::cout << "Ended excecution" << std::endl;
 

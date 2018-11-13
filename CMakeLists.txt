@@ -20,6 +20,7 @@ add_executable(
   ./src/FileReader/FileReader.h
   ./src/FileWriter/FileWriter.h
   ./src/BorderDetection/BorderDetection.h
+  ./src/ConnectedComponents/ConnectedComponents.h
 )
 
 target_link_libraries(
