@@ -15,6 +15,7 @@ add_executable(
   roboto
   ./src/main.cxx
   ./src/Traits/Traits.h
+  ./src/Voronoi/Voronoi.h
   ./src/Bresenham/Bresenham.h
   ./src/FileReader/FileReader.h
   ./src/FileWriter/FileWriter.h

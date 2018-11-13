@@ -25,15 +25,14 @@ public:
   static const FT SUCCESS;
 
   /*
-  * Types
+  * CGAL Algebraic Types
   */
 
   typedef FT Element;
   typedef CGAL::Linear_algebraCd< FT > AlgebraicKernel;
   typedef typename AlgebraicKernel::Vector Vector;
   typedef typename AlgebraicKernel::Matrix Matrix;
-  typedef typename Matrix::column_iterator ColumnIterator;
-  typedef typename Matrix::row_iterator RowIterator;
+
 
 }; /* Traits */
 

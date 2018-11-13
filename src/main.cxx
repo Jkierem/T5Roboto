@@ -1,17 +1,21 @@
 #define CGAL_USE_BASIC_VIEWER
 
 #include <iostream>
+#include <vector>
 
 #include "./Traits/Traits.h"
 #include "./Bresenham/Bresenham.h"
 #include "./FileReader/FileReader.h"
 #include "./FileWriter/FileWriter.h"
 #include "./BorderDetection/BorderDetection.h"
-
+#include "./Voronoi/Voronoi.h"
 
 typedef Traits< int > TT;
 typedef Core::FileReader< TT > FR;
 typedef Core::FileWriter< TT > FW;
+typedef Core::Voronoi< TT > VD;
+typedef typename VD::Site_2 Site_2;
+typedef typename VD::SiteVector SiteVector;
 
 int main( int argc, char* argv[] )
 {
@@ -29,11 +33,12 @@ int main( int argc, char* argv[] )
   }
 
   TT::Matrix m = res.value;
-  Core::getBorders< TT >( m );
+  TT::Matrix borders = Core::getBorders< TT >( m );
 
-  Core::Line line = Core::calculateLine( 0 , 0 , 100 , 5);
-  Core::plotOverMatrix< TT >( m , line );
-  FW::writeFile( argv[ 2 ] , m );
+  SiteVector points = VD::getSitesFromMatrix( borders );
+  VD::VoronoiDiagram v = VD::getVoronoiFromSites( points );
+
+  FW::writeFile( argv[ 2 ] , borders );
 
   std::cout << "Ended excecution" << std::endl;
 

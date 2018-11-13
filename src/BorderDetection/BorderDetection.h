@@ -5,9 +5,9 @@ namespace Core {
   template< typename Traits >
   bool isBorder( int i , int j , const typename Traits::Matrix& m );
   template< typename Traits >
-  void getBorders( typename Traits::Matrix& matrix );
+  typename Traits::Matrix getBorders( typename Traits::Matrix& matrix );
 } /* Core */
 
-#include "Core.cxx"
+#include "BorderDetection.cxx"
 
 #endif
