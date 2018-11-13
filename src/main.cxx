@@ -41,8 +41,8 @@ int main( int argc, char* argv[] )
   SiteVector points = VD::getSitesFromMatrix( borders );
   VD::VoronoiDiagram v = VD::getVoronoiFromSites( points );
   TT::Matrix regions = CC::getConnectedRegions( borders );
+  TT::PolygonContainer ps = CC::createPolygonsFromRegions( regions );
   FW::writeFile( argv[ 2 ] , regions );
-
   std::cout << "Ended excecution" << std::endl;
 
   return( 0 );

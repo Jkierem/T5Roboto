@@ -1,6 +1,8 @@
 #ifndef __TYPES_H__
 #define __TYPES_H__
 
+#include <CGAL/Polygon_2.h>
+#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
 #include <CGAL/Linear_algebraCd.h>
 
 template< typename FT >
@@ -32,7 +34,10 @@ public:
   typedef CGAL::Linear_algebraCd< FT > AlgebraicKernel;
   typedef typename AlgebraicKernel::Vector Vector;
   typedef typename AlgebraicKernel::Matrix Matrix;
-
+  typedef CGAL::Exact_predicates_inexact_constructions_kernel K;
+  typedef CGAL::Polygon_2< K > Polygon;
+  typedef CGAL::Point_2< K > Point;
+  typedef std::vector< Polygon > PolygonContainer;
 
 }; /* Traits */
 
