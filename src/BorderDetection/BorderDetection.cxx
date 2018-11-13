@@ -7,10 +7,6 @@ bool Core::isBorder( int row , int col , const typename Traits::Matrix& m ){
   if( col+1 < nCols && m( row , col+1 ) == Traits::FREE ){ is = true; }
   if( row-1 >= 0    && m( row-1 , col ) == Traits::FREE ){ is = true; }
   if( col-1 >= 0    && m( row , col-1 ) == Traits::FREE ){ is = true; }
-  if( row+1 < nRows && col+1 < nCols && m( row+1 , col+1 ) == Traits::FREE ){ is = true; }
-  if( row-1 >= 0    && col+1 < nCols && m( row-1 , col+1 ) == Traits::FREE ){ is = true; }
-  if( row+1 < nRows && col-1 >= 0    && m( row+1 , col-1 ) == Traits::FREE ){ is = true; }
-  if( row-1 >= 0    && col-1 >= 0    && m( row-1 , col-1 ) == Traits::FREE ){ is = true; }
   return is;
 }
 
